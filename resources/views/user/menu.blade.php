@@ -52,18 +52,18 @@ https://templatemo.com/tm-546-sixteen-clothing
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="index.html">Home
+                <a class="nav-link" href="{{ url('/') }}">Home
                   <span class="sr-only">(current)</span>
                 </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="products.html">Our Products</a>
+                <a class="nav-link" href="{{ url('product') }}">Our Products</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html">About Us</a>
+                <a class="nav-link" href="{{ url('about') }}">About Us</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contact.html">Contact Us</a>
+                <a class="nav-link" href="{{ url('contact') }}">Contact Us</a>
               </li>
               <li class="nav-item">
               @if (Route::has('login'))
@@ -97,66 +97,3 @@ https://templatemo.com/tm-546-sixteen-clothing
       </div>
       @endif
     </header>
-<div style="padding:100px;" align="center">
-<table>
-<tr style="background-color: grey;">
-    <td style="padding:10px; font-size:20px;" >Product Name</td>
-    <td style="padding:10px; font-size:20px;">Quantity</td>
-    <td style="padding:10px; font-size:20px;">Price</td>
-    <td style="padding:10px; font-size:20px;">Action</td>
-</tr>
-<form action="{{ url('order') }}" method="POST">
-@csrf
-@foreach ( $cart as $carts )
-<tr style="background-color: black">
-    <td style="padding: 10px; color:white;">
-      <input type="text" name="productname[]" value="
-      {{$carts->product_title }}" hidden="">
-      {{$carts->product_title }}
-    </td>
-    <td style="padding: 10px; color:white;">
-      <input type="text" name="quantity[]" value="
-      {{$carts->quantity }}" hidden="">
-      {{$carts->quantity }}</td>
-    <td style="padding: 10px; color:white;">
-      <input type="text" name="price[]" value="
-      {{$carts->price }}" hidden="">
-      {{$carts->price }}</td>
-    <td style="padding: 10px; color:white;"><a class="btn btn-danger" href="{{ url('delete' , $carts->id) }}" >Delete</a></td>
-</tr>
-    
-@endforeach
-</div>
-
-</table>
-<button class="btn btn-success">Confirm Order</button>
-</form>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-    <!-- Additional Scripts -->
-    <script src="assets/js/custom.js"></script>
-    <script src="assets/js/owl.js"></script>
-    <script src="assets/js/slick.js"></script>
-    <script src="assets/js/isotope.js"></script>
-    <script src="assets/js/accordions.js"></script>
-
-
-    <script language = "text/Javascript"> 
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
-          }
-      }
-    </script>
-
-
-  </body>
-
-</html>
